@@ -26,3 +26,11 @@ outlier_fraction = len(fraud) / float(len(valid))
 print("Number of Fraud Cases:", len(fraud))
 print("Number of Valid Transactions:", len(valid))
 print("Outlier Fraction:", outlier_fraction)
+
+plt.figure(figsize=(10, 8))
+sns.countplot(x='Class', data=data)
+plt.title('Class Distribution (0: Valid, 1: Fraud)')
+plt.show()
+# Feature Selection and Data Splitting
+X = data.drop(['Class'], axis=1)
+Y = data["Class"]
