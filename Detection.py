@@ -53,3 +53,30 @@ class_report = classification_report(y_test, y_pred)
 print("Accuracy:", accuracy)
 print("\nConfusion Matrix:\n", conf_matrix)
 print("\nClassification Report:\n", class_report)
+
+
+#import library
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import accuracy_score,f1_score
+n = 7
+
+#accuracy assesment 
+
+#train with KNN 
+KNN = KNeighborsClassifier(n_neighbors = n)
+KNN.fit(X_train, y_train)
+knn_yhat = KNN.predict(X_test)
+print('Accuracy score of the K-Nearest Neighbors model is {}'.format(accuracy_score(y_test, knn_yhat)))
+print('F1 score of the K-Nearest Neighbors model is {}'.format(f1_score(y_test, knn_yhat)))
+
+# training the model on training set
+from sklearn.naive_bayes import GaussianNB
+gnb = GaussianNB()
+gnb.fit(X_train, y_train)
+
+# making predictions on the testing set
+y_pred = gnb.predict(X_test)
+
+# comparing actual response values (y_test) with predicted response values (y_pred)
+from sklearn import metrics
+print("Gaussian Naive Bayes model accuracy(in %):", metrics.accuracy_score(y_test, y_pred)*100)
